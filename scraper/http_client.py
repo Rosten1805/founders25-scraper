@@ -1,10 +1,9 @@
 """Cliente HTTP con rate limiting, retries con backoff y circuit breaker.
 
-Mejora deliberada sobre el patrón visto en un proyecto externo de referencia
-(timeout único sin reintentos, sin delay entre requests, sin distinción de
-tipo de error): aquí se clasifica cada fallo, se reintenta solo lo
-reintentable, se espera entre requests por cortesía y se aborta la corrida
-si hay demasiados fallos consecutivos seguidos.
+Evita el anti-patrón de timeout único sin reintentos, sin delay entre
+requests y sin distinción de tipo de error: aquí se clasifica cada fallo,
+se reintenta solo lo reintentable, se espera entre requests por cortesía y
+se aborta la corrida si hay demasiados fallos consecutivos seguidos.
 
 Política respaldada por /DOCS/onboarding_scraper.md §6.
 """

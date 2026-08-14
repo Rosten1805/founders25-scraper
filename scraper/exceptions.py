@@ -1,10 +1,9 @@
 """Excepciones específicas del pipeline.
 
-El repositorio de referencia (un proyecto externo de referencia) captura todo con
-`except Exception` genérico, lo que oculta si un fallo fue un timeout, un
-404 o un error de parseo. Aquí cada capa lanza una excepción específica para
-que el llamador decida (reintentar, descartar el registro, abortar la
-corrida) con conocimiento real de la causa.
+Capturar todo con `except Exception` genérico oculta si un fallo fue un
+timeout, un 404 o un error de parseo. Aquí cada capa lanza una excepción
+específica para que el llamador decida (reintentar, descartar el registro,
+abortar la corrida) con conocimiento real de la causa.
 """
 
 

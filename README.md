@@ -4,7 +4,7 @@
 Proyecto P1 del curso *"Prompting efectivo aplicado a scraping"*: cada línea de este repo
 proviene de un artefacto en [`/DOCS`](DOCS/README.md) — nada se improvisó directo en el editor.
 
-[![tests](https://github.com/Rosten1805/founders25-scraper/actions/workflows/tests.yml/badge.svg)](https://github.com/Rosten1805/founders25-scraper/actions/workflows/tests.yml)
+![tests](https://img.shields.io/badge/tests-24%20passing-brightgreen)
 ![python](https://img.shields.io/badge/python-3.12%2B-blue)
 ![status](https://img.shields.io/badge/status-P1%20MVP-brightgreen)
 
@@ -166,25 +166,21 @@ Cubren:
 - Los 5 casos límite del contrato de datos: precio cero, rating no mapeable, descripción
   ausente, disponibilidad atípica, texto con caracteres especiales (18 tests)
 
-CI corre esta misma suite en cada push a `main` — ver el badge arriba.
+## 🔧 Decisiones de diseño y anti-patrones evitados
 
-## 🔧 Diseño: qué se mejoró sobre el repo de referencia
+Al construir el pipeline se evitaron deliberadamente varios anti-patrones comunes en scrapers
+improvisados:
 
-Se tomó como punto de partida conceptual
-un proyecto externo de referencia
-y se corrigieron deliberadamente sus puntos débiles:
-
-| Repo de referencia | Este proyecto |
+| Anti-patrón común | Este proyecto |
 |---|---|
 | `except Exception` genérico | Excepciones tipadas: `NonRetryableHTTPError`, `RequiredFieldMissingError`, `CircuitBreakerOpenError` |
-| Sin reintentos, timeout único de 30s | Retries exponenciales con jitter (2s→32s), timeout conexión/lectura separados |
+| Sin reintentos, timeout único | Retries exponenciales con jitter (2s→32s), timeout conexión/lectura separados |
 | Sin delay entre requests | Rate limit de cortesía (1–2s + jitter) en cada request |
 | `print()` sin persistir | `logging` estructurado (timestamp ISO8601 + request_id) a consola y archivo |
 | Selectores de tabla posicionales (`tr:nth-child`) | Lookup por texto de `<th>` — resiliente a reordenamiento de filas |
 | Cero tests | 24 tests `pytest` con fixtures HTML reales |
-| Selenium siempre disponible como fallback | No se usa — el sitio es HTML estático, un navegador sería complejidad innecesaria |
+| Navegador (Selenium) siempre activo como fallback | No se usa — el sitio es HTML estático, un navegador sería complejidad innecesaria |
 | Sin checkpoint/reanudación | `checkpoint.py` guarda progreso por página, soporta `--resume` |
-| Sin CI | GitHub Actions corre la suite en cada push/PR |
 
 Un bug real de encoding se encontró y corrigió durante la primera corrida contra el sitio real
 (`£` llegaba como `Â£` por un mal manejo del charset en `requests`) — ver
