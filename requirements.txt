@@ -1,0 +1,10 @@
+requests>=2.31,<3.0
+beautifulsoup4>=4.12,<5.0
+pytest>=8.0,<9.0
+
+# lxml no se incluye: en Python 3.14 + Windows sin Visual Studio Build Tools
+# no hay wheel precompilado y falla la compilación desde código fuente.
+# El proyecto usa el parser "html.parser" de la librería estándar en su
+# lugar (ver scraper/config.py y /DOCS/dependencias.md). Si tu entorno sí
+# tiene wheels de lxml disponibles, puedes instalarlo y cambiar
+# HTML_PARSER = "lxml" para un parseo más rápido.

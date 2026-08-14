@@ -1,6 +1,7 @@
 <!--
 Plantilla de Pull Request — founders25-scraper
-Guardar como .github/pull_request_template.md en el repo cuando se cree.
+Copia de referencia. La copia funcional que GitHub usa realmente está en
+.github/pull_request_template.md — si cambias una, cambia la otra.
 -->
 
 ## Resumen

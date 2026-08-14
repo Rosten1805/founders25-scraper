@@ -1,0 +1,21 @@
+# Entornos virtuales
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Salidas del scraper (datos generados, no versionados)
+data/*.csv
+data/*.json
+data/.checkpoint.json
+!data/.gitkeep
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+.idea/
+
+# Tests
+.pytest_cache/
