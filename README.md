@@ -19,7 +19,6 @@ proviene de un artefacto en [`/DOCS`](DOCS/README.md) — nada se improvisó dir
 - [Uso del CLI](#-uso-del-cli)
 - [El dataset (contrato de datos)](#-el-dataset-contrato-de-datos)
 - [Tests](#-tests)
-- [Diseño: qué se mejoró sobre el repo de referencia](#-diseño-qué-se-mejoró-sobre-el-repo-de-referencia)
 - [Artefactos de diseño (/DOCS)](#-artefactos-de-diseño-docs)
 - [Roadmap / releases](#-roadmap--releases)
 - [Contribuir](#-contribuir)
